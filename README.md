@@ -1,1 +1,1 @@
-# gr-bloodline-notes
+# gr-bloodline-rules
