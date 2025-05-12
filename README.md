@@ -1,4 +1,4 @@
-# 🩸 GRメBloodline | Guild Rules
+# 🩸 ᴳᴿメʙʟᴏᴏᴅʟɪɴᴇ | Guild Rules
 
 📜 Welcome to the official rulebook of the GRメBloodline Guild!  
 This is not just a game — it's a family. 💪❤️
