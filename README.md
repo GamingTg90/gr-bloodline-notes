@@ -1,6 +1,6 @@
 # 🩸 ᴳᴿメʙʟᴏᴏᴅʟɪɴᴇ | Guild Rules
 
-📜 Welcome to the official rulebook of the GRメBloodline Guild!  
+📜 Welcome to the official rulebook of the ᴳᴿメʙʟᴏᴏᴅʟɪɴᴇ Guild!  
 This is not just a game — it's a family. 💪❤️
 
 ## 🔗 Live Site
