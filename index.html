@@ -105,21 +105,20 @@
       }
     }
 
-    /* Fix for yellow text in light theme */
     [data-theme="light"] .rule-number,
     [data-theme="light"] .faq-item strong {
       color: #cc9900;
     }
   </style>
 </head>
-<body data-theme="dark">
+<body>
   <div class="toggle-bar">
-    <button class="btn" onclick="toggleTheme()">☀️/🌙</button>
+    <button class="btn" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle theme">🖥️</button>
     <button class="btn" onclick="toggleLanguage()" id="translateBtn">English</button>
   </div>
 
   <div id="content">
-    <!-- Bangla content goes here (default loaded) -->
+    <!-- Bangla content goes here -->
     <h1>🩸 ᴳᴿメʙʟᴏᴏᴅʟɪɴᴇ | Gladiator's Reborn Bloodline 🩸</h1>
     <p><em>“We don't die — We multiply.”</em></p>
     <p>আসসালামু আলাইকুম!</p>
@@ -176,7 +175,7 @@
 
   <script>
     let isBangla = true;
-    let isDark = true;
+    let themeMode = "system"; // dark, light, or system
 
     const banglaContent = document.getElementById("content").innerHTML;
 
@@ -247,11 +246,42 @@
       isBangla = !isBangla;
     }
 
-    function toggleTheme() {
-      const currentTheme = document.body.getAttribute("data-theme");
-      const newTheme = currentTheme === "dark" ? "light" : "dark";
-      document.body.setAttribute("data-theme", newTheme);
+    function applyTheme(mode) {
+      const themeBtn = document.getElementById("themeBtn");
+      const root = document.body;
+
+      if (mode === "system") {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.setAttribute("data-theme", prefersDark ? "dark" : "light");
+        themeBtn.textContent = "🖥️";
+      } else {
+        root.setAttribute("data-theme", mode);
+        themeBtn.textContent = mode === "dark" ? "🌙" : "☀️";
+      }
+
+      themeMode = mode;
+      localStorage.setItem("theme-mode", mode);
     }
+
+    function toggleTheme() {
+      const nextMode = themeMode === "dark" ? "light" :
+                       themeMode === "light" ? "system" : "dark";
+      applyTheme(nextMode);
+    }
+
+    function initTheme() {
+      const saved = localStorage.getItem("theme-mode") || "system";
+      applyTheme(saved);
+
+      // Auto reapply system theme on system change
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        if (themeMode === "system") {
+          applyTheme("system");
+        }
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", initTheme);
   </script>
 </body>
 </html>
